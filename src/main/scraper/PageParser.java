@@ -77,7 +77,7 @@ public class PageParser {
 			// add the current berrys cost to the count
 			cumalativeCountOfCost = cumalativeCountOfCost + unitPrice;
 
-			Berry berry = new Berry(title, kcalPer100G, unitPrice, description);
+			Berry berry = new Berry(title, kcalPer100G, unitPrice.toString(), description);
 			return berry;
 
 		} catch (IOException e) {
@@ -105,7 +105,7 @@ public class PageParser {
 			// if there are no tableRow0 elements found its the other table structure. If
 			// neither tables exist then there is no info
 			if (tableRow.size() > 0) {
-				kcalPer100G = nutritionTable.getElementsByClass("tableRow0").first().text();
+				kcalPer100G = nutritionTable.getElementsByClass("tableRow0").first().child(0).text();
 			} else {
 				kcalPer100G = nutritionTable.getElementsByClass("rowHeader").get(1).nextElementSibling().text();
 			}

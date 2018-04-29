@@ -1,13 +1,15 @@
 package main.scraper.domains;
 
+import java.text.DecimalFormat;
+
 public class Berry {
 
 	private String title;
 	private String kcal_per_100g;
-	private double unit_price;
+	private String unit_price;
 	private String description;
 	
-	public Berry(String title, String kcalPer100G, Double unitPrice, String description) {
+	public Berry(String title, String kcalPer100G, String unitPrice, String description) {
 		this.title = title;
 		this.kcal_per_100g = kcalPer100G;
 		this.unit_price = unitPrice;
@@ -31,11 +33,13 @@ public class Berry {
 		this.kcal_per_100g = kcal_per_100g;
 	}
 
-	public double getUnit_price() {
-		return unit_price;
+	public String getUnit_price() {
+		DecimalFormat decim = new DecimalFormat("#.00");
+		return decim.format(kcal_per_100g);
 	}
+		
 
-	public void setUnit_price(double unit_price) {
+	public void setUnit_price(String unit_price) {
 		this.unit_price = unit_price;
 	}
 
