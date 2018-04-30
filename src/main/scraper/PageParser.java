@@ -1,6 +1,7 @@
 package main.scraper;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,7 +22,8 @@ import main.scraper.domains.Berry;
 public class PageParser {
 
 	private double cumalativeCountOfCost;
-
+	DecimalFormat df = new DecimalFormat("#.00"); 
+	
 	public String parsePage() {
 
 		String sainsburysUrl = "https://jsainsburyplc.github.io/serverside-test/site/www.sainsburys.co.uk/webapp/wcs/stores/servlet/gb/groceries/berries-cherries-currants6039.html";
@@ -47,9 +49,9 @@ public class PageParser {
 			}
 
 			// after all the berry have been iterated over tell the dto the cumalative count
-			jsonObject.setSumOfPrices(cumalativeCountOfCost);
+			jsonObject.setSumOfPrices(df.format(cumalativeCountOfCost));
 
-			String json = JsonHelper.mashalObjectIntoJson(jsonObject);
+			JsonHelper.mashalObjectIntoJson(jsonObject);
 
 			System.out.println("end of parser");
 		} catch (IOException e) {
@@ -77,7 +79,7 @@ public class PageParser {
 			// add the current berrys cost to the count
 			cumalativeCountOfCost = cumalativeCountOfCost + unitPrice;
 
-			Berry berry = new Berry(title, kcalPer100G, unitPrice.toString(), description);
+			Berry berry = new Berry(title, kcalPer100G, df.format(unitPrice), description);
 			return berry;
 
 		} catch (IOException e) {
@@ -127,7 +129,7 @@ public class PageParser {
 		ppUnit = ppUnit.substring(1, ppUnit.length());
 
 		Double ppUnitDouble = Double.valueOf(ppUnit);
-
+		
 		return ppUnitDouble;
 	}
 

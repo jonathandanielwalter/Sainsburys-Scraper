@@ -34,8 +34,7 @@ public class Berry {
 	}
 
 	public String getUnit_price() {
-		DecimalFormat decim = new DecimalFormat("#.00");
-		return decim.format(kcal_per_100g);
+		return unit_price;
 	}
 		
 

@@ -8,7 +8,7 @@ import main.scraper.domains.Berry;
 public class JsonDto {
 
 	private List<Berry> berrys = new ArrayList<>();
-	private double sumOfPrices;
+	private String sumOfPrices;
 
 	public List<Berry> getBerrys() {
 		return berrys;
@@ -18,11 +18,11 @@ public class JsonDto {
 		this.berrys = berrys;
 	}
 
-	public double getSumOfPrices() {
+	public String getSumOfPrices() {
 		return sumOfPrices;
 	}
 
-	public void setSumOfPrices(double sumOfPrices) {
+	public void setSumOfPrices(String sumOfPrices) {
 		this.sumOfPrices = sumOfPrices;
 	}
 
